@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CRITR. | Handwritten Text</title>
+	<link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/handwritten_text.css">
+	<link rel="icon" href="images/favicon.png">
+    <script src="scripts/button_functions.js"></script>
+    <script src=“https://code.jquery.com/jquery-3.4.1.slim.min.js” integrity=“sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n” crossorigin=“anonymous”></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=“anonymous”></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<section>
+		<header>
+			<a href="index.html">
+				<img src="images/critr_logo.png" class="logo">
+			</a> 
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="tool.html" class="active">Tool</a></li>
+			</ul>
+		</header>
+
+        <div class="container">
+            <div class="load_bar">
+                <div class="add_image_btn">
+                    <img src="images/icons/add_icon.png" alt="add_image_icon">
+                </div>
+                <div class="convert_image_btn">
+                    <img src="images/icons/convert_icon.png" alt="convert_image_icon">
+                </div>
+            </div>
+            <div class="text_container">
+                <p id="output_text">lorem ipsum lorem ipsum lorem ipsum</p>
+            </div>
+        </div>
+
+        
+	</section>
+
+    <div class="functions">
+        <div class="btn_container">
+            <div id="btn_flex_warpper">
+                <!--copy converted text button-->
+                <div class="feature_btn" onclick="copyText('output_text')">
+                    <img src="images/icons/copy_icon.png" alt="copy_icon">
+                </div>
+                <!--save converted text button-->
+                <div class="dropdown">
+                    <div class="feature_btn">
+                        <img src="images/icons/save_icon.png" alt="save_icon">
+                        <div class="dropdown-content">
+                            <div onclick="saveAsText('output_text')">Text</div>
+                            <div onclick="saveAsRichText('output_text')">Rich Text</div>
+                            <div>PDF</div>
+                            <div>Word</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!--share converted text button-->
+                <div class="dropdown">
+                    <div class="feature_btn">
+                        <img src="images/icons/share_icon.png" alt="share_icon">
+                        <div class="dropdown-content">
+                            <div onclick="shareOnFacebook('output_text')">Facebook</div>
+                            <div onclick="shareOnTwitter('output_text')">Twitter</div>
+                            <div>Linkedin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--print converted text button-->
+                <div class="feature_btn" onclick="printText('output_text')">
+                    <img src="images/icons/print_icon.png" alt="print_icon">
+                </div>
+                <!--check spelling and grammar for english text feature button-->
+                <div class="feature_btn">
+                    <img src="images/icons/spell_grammarcheck_icon.png" alt="spell_grammarcheck_icon">
+                </div>
+                <!--translate converted sinhala text to english feature button-->
+                <div class="dropdown">
+                    <div class="feature_btn">
+                        <img src="images/icons/translation_icon.png" alt="translation_icon">
+                        <div class="dropdown-content">
+                            <div>English</div>
+                            <div>Tamil</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+</body>
+</html>

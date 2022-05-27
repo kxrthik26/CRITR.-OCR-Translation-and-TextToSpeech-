@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 40px 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	position: relative;
+	max-width: 80px;
+	height: auto;
+}
+
+header ul {
+	position: relative;
+	display: flex;
+}
+header ul li {
+	list-style: none;
+}
+
+header ul li a {
+	display: inline-block;
+	color: #fff;
+	font-weight: 100;
+	margin-left: 40px;
+	text-decoration: none;
+}
+
+.active {
+	color: #e65541;
+}

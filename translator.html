@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CRITR. | Translator</title>
+
+    <link rel="icon" href="images/favicon.png">
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/translator.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <script src = "scripts/Bandula Normal-normal.js"></script>
+    <script src = "scripts/jspdf.debug.js"></script>
+
+
+  </head>
+  <body>
+
+    <header>
+
+      <!--CRITR. Logo-->
+      <a href="index.html">
+        <img src="images/critr_logo.png" class="logo">
+      </a> 
+
+      <!--Navigation Bar-->
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="tool.html" class="active">Tool</a></li>
+      </ul>
+
+    </header>
+
+    <div class="container">
+      <div class="wrapper">
+        <div class="text-input">
+          <textarea spellcheck="false" class="from-text" placeholder="Enter text" id="sinhalaText"></textarea>
+          <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation" id="translatedResult"></textarea>
+        </div>
+        <ul class="controls">
+          <li class="row from">
+            <div class="icons">
+              <i id="from" class="fas fa-volume-up"></i>
+            </div>
+            <select></select>
+          </li>
+          <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
+          <li class="row to">
+            <select></select>
+            <div class="icons">
+              <i id="to" class="fas fa-volume-up"></i>
+            </div>
+          </li>
+        </ul>
+        <ul>
+          <li class="wordcounts">
+            <p>
+              <span id="words"> 0</span> words | 
+              <span id="char"> 0</span> characters
+            </p>
+          </li>
+        </ul>
+      </div>
+      <button>Translate Text</button>
+    </div>
+
+
+    <script src="scripts/countries.js"></script>
+    <script src="scripts/translator.js"></script>
+
+
+    <!--Function Buttons-->
+    <div class="functions">
+      <div class="btn_container">
+          <div id="btn_flex_warpper">
+
+
+              <!--copy converted text button-->
+              <div class="feature_btn" onclick="copyText('translatedResult')">
+                  <img src="images/icons/copy_icon.png" alt="copy_icon">
+              </div>
+
+
+              <!--save converted text to document button-->
+              <div class="dropdown">
+                  <div class="feature_btn">
+                      <img src="images/icons/save_icon.png" alt="save_icon">
+                      <div class="dropdown-content">
+                          <div onclick="saveAsText('translatedResult')">Text</div>
+                          <div onclick="saveAsRichText('translatedResult')">Rich Text</div>
+                          <div onclick="saveAsPDF('translatedResult')">PDF</div>
+                          <div onclick="saveAsWord('translatedResult' , 'critr')">Word</div>
+                      </div>
+                  </div>
+              </div>
+              
+              
+              <!--share converted text button-->
+              <div class="dropdown">
+                  <div class="feature_btn">
+                      <img src="images/icons/share_icon.png" alt="share_icon">
+                      <div class="dropdown-content">
+                          <div onclick="shareOnFacebook('translatedResult')">Facebook</div>
+                          <div onclick="shareOnTwitter('translatedResult')">Twitter</div>
+                      </div>
+                  </div>
+              </div>
+              
+              <!--print converted text button-->
+              <div class="feature_btn" onclick="printText('sinhalaText','translatedResult')">
+                  <img src="images/icons/print_icon.png" alt="print_icon">
+              </div>
+              
+            </div>
+        </div>
+      </div>
+
+    <script>
+
+      /* Display Word Count */
+      let textbox = document.getElementById("sinhalaText");
+      textbox.addEventListener('input', function() {
+
+          var text = this.value;
+          let char = text.length;
+          document.getElementById("char").innerHTML = char;
+
+          text = text.trim();
+          let words = text.split(" ");
+          let fresh = words.filter(function(ele){
+              return ele!="";
+          });
+
+          document.getElementById("words").innerHTML = fresh.length;
+      });
+      
+    </script>
+
+  </body>
+</html>

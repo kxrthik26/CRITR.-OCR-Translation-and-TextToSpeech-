@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+section {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	background: #281b5d;
+}
+
+.btn_container {
+    display: flex;
+    margin: auto;
+}
+
+.tool_btn {
+    padding: 10px 5px;
+    width: 120px;
+    background-color: #fff;
+    margin: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.tool_btn > a {
+    color: #000;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}

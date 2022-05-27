@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CRITR. | Handwritten Text</title>
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/handwritten_text.css">
+
+    <link rel="icon" href="images/favicon.png">
+
+    <script src="scripts/button_functions.js"></script>
+
+    <!--<script src=“https://code.jquery.com/jquery-3.4.1.slim.min.js” integrity=“sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n” crossorigin=“anonymous”></script>-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=“anonymous”></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script src = "scripts/Bandula Normal-normal.js"></script>
+    <script src = "scripts/jspdf.debug.js"></script>
+
+  </head>
+
+  <body>
+    <section>
+      <header>
+
+        <!--CRITR. Logo-->
+        <a href="index.html">
+          <img src="images/critr_logo.png" class="logo">
+        </a> 
+
+        <!--Navigation Bar-->
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="tool.html" class="active">Tool</a></li>
+        </ul>
+      </header>
+
+      <!--Form to pass data to APIs-->
+      <div class="container" method="post" enctype="multipart/form-data" action="/upload">
+        <form class="load_bar" id="detectImageForm">
+
+            <!--Add image to detect-->
+            <label class="add_image_btn" for="imageFile">
+                <img src="images/icons/add_icon.png" alt="add_image_icon">
+                <input type="file" id="imageFile" accept="image/*">
+            </label>
+
+            <!--Start OCR-->
+            <label class="convert_image_btn">
+                <input type="submit" name="submit" value="submit">
+                <img src="images/icons/convert_icon.png" alt="convert_image_icon">
+            </label>
+        </form>
+
+        <div id="result">
+            <!--Container for converted text using OCR-->
+        </div>
+
+        <div>
+          
+        </div>
+      </div>
+
+      <!--Scripts-->
+      <script>
+          
+        /*---------------Google Cloud Vision API---------------*/
+
+        //
+        const detectImageForm = document.querySelector("#detectImageForm");
+        const imageFile = detectImageForm.querySelector("#imageFile");
+        //const imagePreview = document.querySelector("#imagePreview");
+        const result = document.querySelector("#result");
+
+        /*
+        const setImagePreview = async () => {
+          const imageBase64String = await getImageBase64String();
+          imagePreview.setAttribute("src", imageBase64String);
+        };
+        */
+  
+        //
+        const detectImage = async () => {
+          const imageBase64String = await getImageBase64String();
+          const data = {
+            requests: [
+              {
+                image: {
+                  content: imageBase64String.replace(/^data:.+;base64,/, "")
+                },
+                features: [{ type: "TEXT_DETECTION" }]
+              }
+            ]
+          };
+  
+          //API URL
+          const url = "https://vision.googleapis.com/v1/images:annotate?key=[API Key]";
+  
+          //
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          });
+  
+          //
+          const jsonResponse = await response.json();
+          for (const value of jsonResponse.responses) {
+            console.log(value);
+            result.textContent = value.fullTextAnnotation.text;
+          }
+
+          //Display Word Count
+          let count = document.getElementById('result').innerHTML.split(' ').length;
+          document.getElementById("count").innerHTML = count;
+        };
+  
+        //convert to base 64 from input and store
+        const getImageBase64String = async () => {
+          return await toBase64(imageFile.files[0]);
+        };
+  
+        //method to convert image to base 64
+        const toBase64 = file =>
+          new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+          });
+  
+        /*
+        //set image preview
+        imageFile.addEventListener("change", e => {
+          setImagePreview();
+        });
+        */
+
+
+        //pass detect method to submit button
+        detectImageForm.addEventListener("submit", e => {
+          e.preventDefault();
+          detectImage();
+        });
+
+      </script>
+
+    </section>
+
+    <!--Function Buttons-->
+    <div class="functions">
+        <div class="btn_container">
+            <div id="btn_flex_warpper">
+
+
+                <!--copy converted text button-->
+                <div class="feature_btn" onclick="copyText('result')">
+                    <img src="images/icons/copy_icon.png" alt="copy_icon">
+                </div>
+
+
+                <!--save converted text to document button-->
+                <div class="dropdown">
+                    <div class="feature_btn">
+                        <img src="images/icons/save_icon.png" alt="save_icon">
+                        <div class="dropdown-content">
+                            <div onclick="saveAsText('result')">Text</div>
+                            <div onclick="saveAsRichText('result')">Rich Text</div>
+                            <div onclick="saveAsPDF('result')">PDF</div>
+                            <div onclick="saveAsWord('result' , 'critr')">Word</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!--share converted text button-->
+                <div class="dropdown">
+                    <div class="feature_btn">
+                        <img src="images/icons/share_icon.png" alt="share_icon">
+                        <div class="dropdown-content">
+                            <div onclick="shareOnFacebook('result')">Facebook</div>
+                            <div onclick="shareOnTwitter('result')">Twitter</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--print converted text button-->
+                <div class="feature_btn" onclick="printText('result')">
+                    <img src="images/icons/print_icon.png" alt="print_icon">
+                </div>
+
+
+                <!--translate converted text feature button-->
+                <a href="translator.html" target="_blank">
+                  <div class="feature_btn">
+                    <img src="images/icons/translation_icon.png" alt="translation_icon">
+                  </div>
+                </a>
+
+                <!--word count-->
+                <div class="wordcount">
+                  Word Count: <span id="count">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

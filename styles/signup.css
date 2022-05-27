@@ -1,0 +1,51 @@
+* {
+    background-color: #281b5d;
+    color: white;
+    font-family:  'Poppins', sans-serif;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+#logo {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 200px;
+}
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#signUp {
+    background-color: #40d2b6;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #000;
+    border-radius: 5px;
+}
+
+#signIn {
+    background-color: #e65541;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#signOut {
+    font-size: 14px;
+}
+
+input[type=email], input[type=password] {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}

@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+section {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #281b5d;
+}
+
+.content {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.content .textbox {
+	position: relative;
+	max-width: 600px;
+	text-align: right;
+	margin-right: 70px;
+	margin-top: 20px;
+	background-color: #281b5d;
+}
+
+.content .textbox h2 {
+	color: #40d2b6;
+	font-size: 35px;
+	line-height: 1.4em;
+	font-weight: 500;
+}
+
+.content .textbox a {
+	display: inline-block;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background: #fff;
+	color: #000;
+	border-radius: 40px;
+	text-decoration: none;
+}
+
+.content .imagebox {
+	width: 600px;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 60px;
+}
+
+.hero_image {
+	max-width: 600px;
+}

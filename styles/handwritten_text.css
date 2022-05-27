@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+
+section {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	background: #281b5d;
+    
+}
+
+.container {
+    width: 900px;
+    height: 300px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.add_image_btn {
+    padding: 10px 10px 7px 10px;
+    background-color: #40d2b6;
+    border-radius: 8px 0 0 0;
+    float: left;
+    cursor: pointer;
+}
+
+.convert_image_btn {
+    padding: 10px 10px 7px 10px;
+    background-color: #40d2b6;
+    border-radius: 0 8px 0 0;
+    float: right;
+    cursor: pointer;
+}
+
+.add_image_btn > img {
+    max-width: 20px;
+    height: auto;
+}
+
+.convert_image_btn > img {
+    max-width: 20px;
+    height: auto;
+}
+
+.btn_container {
+    display: flex;
+    position: relative;
+	width: 100%;
+	align-items: center;
+	background: #281b5d;
+    margin-top: -100px;
+}
+
+#btn_flex_warpper {
+    align-items: center;
+    margin: auto;
+    display: flex;
+}
+
+.feature_btn {
+    padding: 8px 8px 4px 8px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.feature_btn > img {
+    max-width: 25px;
+    height: auto;
+}
+
+#output_text {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dropdown Button */
+
+.dropdown-content {
+    display: none;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    z-index: 1;
+    border-radius: 12px;
+    padding: 9px;
+    margin-top: 9px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.functions {
+    display: flex;
+    align-items: center;
+	background: #281b5d;
+    width: 100%;
+    position: relative;
+    min-height: 50vh;
+    margin-top: -20vh;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="submit"] {
+    display: none;
+}
+
+.wordcount {
+    color: #e65541;
+    font-size: 12px;
+}
